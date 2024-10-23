@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FirstPage2: View {
+struct ex: View {
     @State var backgraundColor: Color = Color.black
     
     @State  var buttenTextColor1 = false
@@ -164,5 +164,5 @@ struct FirstPage2: View {
 
 
 #Preview {
-    FirstPage2()
+    ex()
 }
