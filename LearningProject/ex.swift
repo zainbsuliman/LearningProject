@@ -1,11 +1,4 @@
 //
-//  ContentView.swift
-//  LearningProject
-//
-//  Created by Zainab Alatwi  on 16/04/1446 AH.
-//
-
-//
 //  FirstPage.swift
 //  LearningProject
 //
@@ -14,8 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
+struct ex: View {
     @State var backgraundColor: Color = Color.black
     
     @State  var buttenTextColor1 = false
@@ -58,7 +50,6 @@ struct ContentView: View {
                     .bold()
                 
                 VStack {
-                    
                     TextField("Swift", text: $userinput)
                     Divider()
                         .frame(height: 1)
@@ -173,5 +164,5 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+    ex()
 }
