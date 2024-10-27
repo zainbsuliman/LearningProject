@@ -11,10 +11,20 @@ struct SecoundPage: View {
     
     @State var backgraundColor: Color = Color.black
     
-    @State private var currentDate2 = Date()
+    @State var currentDate2 = Date()
+    @State var streakCount: Int = 0
+    @State var freezeDayCount: Int = 0
+    @State var circleColor: Color = Color.orange
+    @State var isCirclePressed: Bool = false
+    @State var isFreezePressed: Bool = false
+    @State var todayBackgroundColor: Color = Color.clear
+    @State var circleButtonText: String = "Log today as Learned" // نص الزر الكبير
+    @State var dateColor: Color = Color.orange // لون التاريخ الافتراضي
+    @State var textColor: Color = .black
+    
 
-    // لتاريخ
     var currentDate: String {
+        
         
         let dateFormatter = DateFormatter ()
         dateFormatter.dateFormat = "EEEE,dd MMM"
@@ -28,7 +38,7 @@ struct SecoundPage: View {
             
             backgraundColor
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea()
+               .ignoresSafeArea()
             
             VStack(alignment:.center, spacing:10) {
                 
@@ -70,7 +80,6 @@ struct SecoundPage: View {
                     
                     RoundedRectangle(cornerRadius: 13)
                         .stroke(style: StrokeStyle(lineWidth: 1))
-                    //.offset(x:0,y:-160)
                         .frame(width:367, height: 208)
                         .foregroundColor(.gray.opacity(0.6))
                     
@@ -136,14 +145,18 @@ struct SecoundPage: View {
                                         Text("\(date, formatter: dateFormatterWeekdayShort)")
                                             .font(.headline)
                                             .foregroundColor(isToday(date) ? .white : .gray)
+                                           
                                         
                                         // عرض رقم اليوم
                                         Text("\(date, formatter: dateFormatterShort)")
                                             .frame(width: 44, height: 44)
+                                        
                                         // .background(Color.blue.opacity(0.3))
                                         
                                             .foregroundColor(isToday(date) ? .orangeC : .white)
-                                            .background(isToday(date) ? Color.gray.opacity(0.3) : Color.gray.opacity(0.3))
+                                            .background(isToday(date) ? .orangeC.opacity(0.3)  : .gray.opacity(0.3) )
+                                            //.background(isToday(date) ? .gray.opacity(0.3)  : .gray.opacity(0.3))
+                                            .background(isToday(date) ? todayBackgroundColor : .gray.opacity(0.3))
                                             .cornerRadius(40)
                                             .padding(0.2)
                                         
@@ -165,7 +178,7 @@ struct SecoundPage: View {
                         HStack( spacing: 50){
                             
                             VStack {
-                                Text("10🔥")
+                                Text("\(streakCount)🔥")
                                     .font(.title2)
                                     .bold()
                                 Text("Day streak")
@@ -179,7 +192,7 @@ struct SecoundPage: View {
                             
                             
                             VStack {
-                                Text("2🧊")
+                                Text("\(freezeDayCount)🧊")
                                     .font(.title2)
                                     .bold()
                                 Text("Day freezed")
@@ -196,47 +209,69 @@ struct SecoundPage: View {
                 }
                 
                             
-                                ZStack {
-                                    Button(action: {
-                
-                
-                                    }){
-                                        Circle()
-                                            .frame(width:320, height: 320)
-                
-                                            .foregroundColor(.orangeC)
-                
-                
-                                    }
-                                    .overlay(
-                
-                                        Text("Log today as Learned")
-                                            .font(.largeTitle)
-                                            .foregroundColor(.black)
-                                            .bold()
-                
-                
-                                    )
-                
-                                }
+                ZStack {
+                    
+                    Button(action: {
+                        
+                        
+                        
+                        
+                        if streakCount < 10 {
+                            streakCount += 1
+                            isCirclePressed = true
+                            isFreezePressed = true
+                            
+                            circleColor = Color.orange.opacity(0.5) // جعل لون الزر البرتقالي
+                            todayBackgroundColor = Color.orange.opacity(0.3) // تغيير خلفية اليوم الحالي إلى برتقالي
+                            circleButtonText = "Learned Today"
+                            textColor = .orange
+                            dateColor = Color.orange // تغيير لون الرقم إلى برتقالي
+                        }
+                        
+                        
+                        
+                        
+                        
+                    }){
+                        Circle()
+                            .frame(width: 320, height: 320)
+                            .foregroundColor(circleColor)
+                            .overlay(
+                                Text(circleButtonText)
+                                    .font(.largeTitle)
+                                    .foregroundColor(.black)
+                                    .bold()
+                            )
+                    }
+                }
                 
                                 Button(action: {
-                
-                                }){
-                
+                                    
+        
+                                    if freezeDayCount < 3 {
+                                        freezeDayCount += 1
+                                        isFreezePressed = true
+                                        todayBackgroundColor = Color.blue.opacity(0.5) // تغيير خلفية اليوم الحالي إلى أزرق
+                                        circleColor = Color.blue.opacity(0.5) // جعل لون الزر الدائري الكبير أزرق
+                                        circleButtonText = "Day Freezed"
+                                        textColor = .blue
+
+                                        dateColor = Color.red.opacity(0.5) // تغيير لون الرقم إلى أزرق
+                                    }
+                                }) {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)
-                                            .frame(width:162, height: 52)
-                                            .foregroundColor(.babyblue)
-                
+                                            .frame(width: 162, height: 52)
+                                            .foregroundColor(isFreezePressed ? Color.gray.opacity(0.5) : Color.babyblue)
                                         Text("Freeze day")
+                                            .foregroundColor(isFreezePressed ? Color.gray : Color.blue)
                                     }
-                
-                
-                
                                 }
                 
-                                Text("2 out of 6 freezes used")
+                
+                    
+                
+                                   Text("2 out of 6 freezes used")
                                     .font(.caption)
                                     .foregroundColor(.gray.opacity(0.6))
                                     .bold()
@@ -275,6 +310,7 @@ struct SecoundPage: View {
         let dateFormatterShort: DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateFormat = "d"
+            
             return formatter
         }()
         

@@ -10,9 +10,33 @@
 		DBB2BAC92CC3E58D00D97EFA /* LearningProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DB4BA2F82CCEB8FE00DED654 /* Exceptions for "LearningProject" folder in "LearningProject" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				.swift,
+			);
+			target = DBB2BAC82CC3E58D00D97EFA /* LearningProject */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		DB4BA2F92CCEB8FE00DED654 /* Exceptions for "LearningProject" folder in "Compile Sources" phase from "LearningProject" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = DBB2BAC52CC3E58D00D97EFA /* Sources */;
+			membershipExceptions = (
+				.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DBB2BACB2CC3E58D00D97EFA /* LearningProject */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DB4BA2F82CCEB8FE00DED654 /* Exceptions for "LearningProject" folder in "LearningProject" target */,
+				DB4BA2F92CCEB8FE00DED654 /* Exceptions for "LearningProject" folder in "Compile Sources" phase from "LearningProject" target */,
+			);
 			path = LearningProject;
 			sourceTree = "<group>";
 		};
