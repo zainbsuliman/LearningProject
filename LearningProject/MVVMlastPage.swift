@@ -21,97 +21,107 @@ struct MVVMlastPage: View {
     
     var body: some View {
         
-        ZStack {
-            
-            Color.black
-                .ignoresSafeArea()
-            
-            VStack(spacing: 20) {
+        NavigationView(){
+            ZStack {
                 
-                VStack(spacing: 40) {
-                    HStack(spacing: 80) {
-                        
-                        Button(action: {}) {
-                            Text("< Back")
+                Color.black
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 20) {
+                    
+                    VStack(spacing: 40) {
+                        HStack(spacing: 80) {
+                            
+                            Button(action: {}) {
+                                NavigationLink(destination: MVVMCALENDER()) {
+                                    
+                                    
+                                    Text("< Back")
+                                        .font(.headline)
+                                        .foregroundColor(.orange)
+                                }
+                            }
+                            
+                            Text("Learning goal")
                                 .font(.headline)
-                                .foregroundColor(.orange)
+                            
+                            Button(action: {}) {
+                                NavigationLink(destination: MVVMCALENDER()) {
+                                    Text("Update")
+                                        .font(.headline)
+                                        .foregroundColor(.orange)
+                                }
+                            }
                         }
                         
-                        Text("Learning goal")
-                            .font(.headline)
-                        
-                        Button(action: {}) {
-                            Text("Update")
+                        VStack(spacing: 10) {
+                            Text("I want to learn")
                                 .font(.headline)
-                                .foregroundColor(.orange)
+                                .foregroundColor(.white)
+                                .padding(.leading, -190)
+                            
+                            TextField("Swift", text: $viewModel.userInput) // Bind to ViewModel
+                                .foregroundColor(.white)
+                            Divider()
+                                .frame(height: 1)
+                                .background(Color.gray.opacity(0.5))
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                
+                        }
+                        .tint(.orange)
+                        .onTapGesture {
+                            hideKeyboard()
                         }
                     }
                     
-                    VStack(spacing: 10) {
-                        Text("I want to learn")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding(.leading, -190)
+                    Text("I want to learn it in a")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding(.leading, -190)
+                    
+                    HStack {
+                        Button(action: {
+                            viewModel.buttonTextColor1.toggle()
+                        }) {
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 68, height: 37)
+                                .foregroundColor(viewModel.buttonTextColor1 ? .orange : .gray.opacity(0.4))
+                                .overlay(
+                                    Text("Week")
+                                        .foregroundColor(viewModel.buttonTextColor1 ? .black : .orange)
+                                )
+                        }
                         
-                        TextField("Swift", text: $viewModel.userInput) // Bind to ViewModel
-                        Divider()
-                            .frame(height: 1)
-                            .background(Color.gray.opacity(0.5))
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button(action: {
+                            viewModel.buttonTextColor2.toggle()
+                        }) {
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 68, height: 37)
+                                .foregroundColor(viewModel.buttonTextColor2 ? .orange : .gray.opacity(0.4))
+                                .overlay(
+                                    Text("Month")
+                                        .foregroundColor(viewModel.buttonTextColor2 ? .black : .orange)
+                                )
+                        }
+                        
+                        Button(action: {
+                            viewModel.buttonTextColor3.toggle()
+                        }) {
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 68, height: 37)
+                                .foregroundColor(viewModel.buttonTextColor3 ? .orange : .gray.opacity(0.4))
+                                .overlay(
+                                    Text("Year")
+                                        .foregroundColor(viewModel.buttonTextColor3 ? .black : .orange)
+                                )
+                        }
+                        
                     }
-                    .tint(.orange)
-                    .onTapGesture {
-                        hideKeyboard()
-                    }
+                    .padding(.leading, -170)
+                    Spacer()
                 }
-                
-                Text("I want to learn it in a")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.leading, -190)
-                
-                HStack {
-                    Button(action: {
-                        viewModel.buttonTextColor1.toggle()
-                    }) {
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 68, height: 37)
-                            .foregroundColor(viewModel.buttonTextColor1 ? .orange : .gray.opacity(0.4))
-                            .overlay(
-                                Text("Week")
-                                    .foregroundColor(viewModel.buttonTextColor1 ? .black : .orange)
-                            )
-                    }
-                    
-                    Button(action: {
-                        viewModel.buttonTextColor2.toggle()
-                    }) {
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 68, height: 37)
-                            .foregroundColor(viewModel.buttonTextColor2 ? .orange : .gray.opacity(0.4))
-                            .overlay(
-                                Text("Month")
-                                    .foregroundColor(viewModel.buttonTextColor2 ? .black : .orange)
-                            )
-                    }
-                    
-                    Button(action: {
-                        viewModel.buttonTextColor3.toggle()
-                    }) {
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 68, height: 37)
-                            .foregroundColor(viewModel.buttonTextColor3 ? .orange : .gray.opacity(0.4))
-                            .overlay(
-                                Text("Year")
-                                    .foregroundColor(viewModel.buttonTextColor3 ? .black : .orange)
-                            )
-                    }
-                    
-                }
-                .padding(.leading, -170)
-                Spacer()
             }
-        }
+        }.navigationBarBackButtonHidden(true )
     }
 }
 
