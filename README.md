@@ -1,7 +1,9 @@
 <h1>📚 Learning Streak Tracker App</h1>
 
-<!-- Image at the top -->
 ![Uploading Screenshot 1446-05-02 at 11.36.20 AM.png…]()
+
+<!-- Image at the top -->
+
 
 <p>This app is designed to help users stay consistent in learning new skills by setting goals, tracking progress, and encouraging daily learning streaks. With interactive elements and simple navigation, the app makes it easier to maintain motivation and track achievements.</p>
 
